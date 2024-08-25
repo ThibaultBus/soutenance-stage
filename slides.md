@@ -21,6 +21,12 @@ class: text-white
 layout: cover
 coverBackgroundUrl: '/ovh-background.jpg'
 transition: slide-left
+themeConfig:
+  paginationPagesDisabled: [13]
+  paginationX: 'r'
+  paginationY: 't'
+
+
 coverDate: ""
 ---
 
@@ -36,6 +42,7 @@ coverDate: ""
 </div>
 
 ---
+# layout: table-of-contents
 hideInToc: true
 ---
 
@@ -46,13 +53,15 @@ hideInToc: true
 
 
 ---
-layout: section
+layout: intro
 ---
 
-# L'entreprise et le projet
+# L'entreprise et l'équipe
 
 ---
-<!-- layout: bullets -->
+layout: figure-side
+figureUrl: "/map-pop.webp"
+
 ---
 
 <style>
@@ -60,7 +69,7 @@ layout: section
   @apply mt-5 opacity-10;
 }
 .footnotes {
-  @apply text-sm fixed bottom-10 left-10 right-0 p-4 bg-white;
+  @apply text-sm fixed bottom-10 left-10 right-0 p-4;
 }
 .footnote-backref {
   display: none;
@@ -69,68 +78,71 @@ layout: section
 
 ## OVHcloud 
 
-<img src="/map-pop.webp" alt="" class="float-right w-1/2 mr-4" />
+<!-- <img src="/map-pop.webp" alt="" class="float-right w-1/2 mr-4" /> -->
+<br/>
+<br/>
 
-* Spécialisé dans le cloud computing, mais aussi FAI et opérateur
+* Spécialisé dans le _cloud computing_, mais aussi FAI et opérateur
 * Premier fournisseur de cloud européen
 * 2900 salariés [^1]
 * 897 millions d'euros de chiffre d'affaires [^1]
+* 43 _datacenters_
+* Acteur majeur de la souveraineté européenne
 
 [^1]: [1. Données de 2023]
 
 ---
-<!-- layout: intro-image-right
-image: '/octave.webp' -->
-imageSize: contain
+layout: figure-side
+figureUrl: '/octave.webp'
+figureX: 'l'
 ---
 
 ## L'histoire d'OVHcloud
 
-* 1999 : Création sous le nom d'OVH, par Octave Klaba
-* Années 2000 : OVH se démarque en construisant ses propres serveurs et en mettant en place un système de refroidissement par eau innovant
-* 2010 : D'abord hébergeur, OVH entre dans le monde du cloud
+* 1999 : Création d'OVH, par Octave Klaba
+* Années 2000 : Rapide évolution d'OVH. L'entreprise se démarque en construisant ses serveurs, et utilise du refroidissement par eau.
+* 2010 : L'entreprise entre dans le monde du _cloud_
+* 2019 : OVH devient OVHcloud
+* 2021 : OVHcloud fait son entrée en bourse
 
 ---
-layout: statement
+layout: center
 ---
 ## Organigramme
 
 <img src="/organigramme.png">
 
----
-<!-- layout: intro-image-right
-image: '/goldorak.png' -->
----
-## L'équipe Gold-ô-Rack
-
-* Équipe R&D
-* Reproduire L'orchestration d'un cloud industriel sur une simple machine
-* Objectif : Datacenter en tant que service
 
 ---
 layout: statement
 ---
-## Les membres de l'équipe
-
+## L'équipe Gold-ô-Rack
+ 
 <br/>
 
-<div>
-  <solar-user-bold-duotone class="text-4xl" />
-  <p> Yann Degat </p>
+<div class="grid grid-cols-2 gap-40 pt-4 -mb-6 place-items-center">
+  <div class="flex flex-col items-center">
+    <solar-user-bold-duotone class="text-4xl" />
+    <p> Yann Degat </p>
+  </div>
+  <div class="flex flex-col items-center">
+    <solar-user-bold-duotone class="text-4xl" />
+    <p> Vicent Casse </p>
+  </div>
 </div>
 
 <br/>
 
 <div class="grid grid-cols-3 gap-40 pt-4 -mb-6">
-  <div>
+  <div class="flex flex-col items-center">
     <solar-user-bold-duotone class="text-4xl" />
     <p> Victor Coutellier </p>
   </div>
-  <div>
+  <div class="flex flex-col items-center">
     <solar-user-bold-duotone class="text-4xl" />
     <p> Olivier Bedouet </p>
   </div>
-  <div>
+  <div class="flex flex-col items-center">
     <solar-user-bold-duotone class="text-4xl" />
     <p> Damien Rannou </p>
   </div>
@@ -139,37 +151,84 @@ layout: statement
 <br/>
 
 <div class="grid grid-cols-3 gap-40 pt-4 -mb-6">
-  <div>
+  <div class="flex flex-col items-center">
     <solar-user-bold-duotone class="text-4xl" />
     <p> Riad El Hajjaji </p>
   </div>
-  <div>
+  <div class="flex flex-col items-center">
     <solar-user-bold-duotone class="text-4xl" />
     <p> Alexandre Arents </p>
   </div>
-  <div>
+  <div class="flex flex-col items-center">
     <solar-user-bold-duotone class="text-4xl" />
-    <p> Vincent Casse </p>
+    <p> Bruno David </p>
+  </div>
+</div>
+
+---
+layout: intro
+---
+
+# Le projet
+
+---
+
+## Objectif de Gold-ô-Rack
+<br/>
+<br />
+
+<div class="flex flex-col items-center">
+  <b> Des critiques à apporter au <i>cloud</i> : </b>
+  <p> Pas d'isolation de l'extérieur, éloignement géographique du client (latence, bande passante...) </p>
+  <solar-arrow-down-bold class="text-4xl" />
+  <b> Une solution : </b>
+  <p> Une pile technologique permettant permettant de construire un <i>cloud</i> isolé </p>
+  <solar-arrow-down-bold class="text-4xl" />
+  <b> Deux produits : </b>
+  <p> <i> Baremetal pod </i> et <i> Datacenter-as-a-Service </i> </p>
+</div>
+
+---
+
+<img src="/seed.png">
+
+---
+layout: center
+---
+
+<div class="flex">
+  <div class="h-110 w-96">
+    <img src="/gor-controller-arch.png" class="object-contain">
   </div>
 </div>
 
 ---
 
-## Mon rôle dans l'équipe
+<div class="flex flex-col">
+  <div>
+  <h2> Problème de post-installation </h2>
 
-Plusieurs applications avec des configurations gérées sub-optimalement :
-* Pas de post-setup possible (ou trop simpliste)
-* Aucune assurance sur l'équivalence avec la configuration de la source de vérité
+  Plusieurs applications avec des configurations gérées sub-optimalement :
+  * Pas de configuration post-installation possible (ou trop simpliste)
+  * Aucune assurance sur l'équivalence avec la configuration de la source de vérité
+  <solar-arrow-right-bold /> <span>  </span> Gestion de la configuration suivant les principes du GitOps
+  </div>
+</div>
 
-<img src="/gitops.jpeg" alt="" class="float-right w-1/2 mr-4" />
+---
+layout: figure
+figureUrl: "/gitops.png"
+class: "bg-white text-black"
+---
 
-<solar-arrow-right-bold /> <span>  </span> Gestion de la configuration suivant les principes du GitOps
+<Pagination classNames="text-black"> </Pagination>
 
 ---
 layout: section
 ---
 
 # Tâches Accomplies
+
 ---
 
 ## Contexte
@@ -200,6 +259,8 @@ image: "/gantt-past.png"
 backgroundSize: contain
 ---
 
+![alt text](image.png)
+![alt text](image-1.png)
 <div class="absolute top-10">
   <h2 text-black>Tâches accomplies</h2>
 </div>
