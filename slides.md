@@ -1,6 +1,6 @@
 ---
 # You can also start simply with 'default'
-theme: apple-basic
+theme: academic
 # some information about your slides (markdown enabled)
 # title: Welcome to Slidev
 # info: |
@@ -17,14 +17,16 @@ theme: apple-basic
 # transition: slide-left
 # # enable MDC Syntax: https://sli.dev/guide/syntax#mdc-syntax
 mdc: true
-layout: intro-image
-image: '/ovh-background-darken.jpg'
+class: text-white
+layout: cover
+coverBackgroundUrl: '/ovh-background.jpg'
 transition: slide-left
+coverDate: ""
 ---
 
 <div class="absolute top-10">
-  <h1>Soutenance de mi-parcours</h1>
-  <p>Configuration post-setup d'applications avec une approche GitOps</p>
+  <h1>Soutenance de stage</h1>
+  <p>Automatisation de la configuration de composants d'une infrastructure <i>cloud</i> isolée par une approche GitOps</p>
 </div>
 
 <div class="absolute bottom-10">
@@ -50,7 +52,7 @@ layout: section
 # L'entreprise et le projet
 
 ---
-layout: bullets
+<!-- layout: bullets -->
 ---
 
 <style>
@@ -77,8 +79,8 @@ layout: bullets
 [^1]: [1. Données de 2023]
 
 ---
-layout: intro-image-right
-image: '/octave.webp'
+<!-- layout: intro-image-right
+image: '/octave.webp' -->
 imageSize: contain
 ---
 
@@ -96,8 +98,8 @@ layout: statement
 <img src="/organigramme.png">
 
 ---
-layout: intro-image-right
-image: '/goldorak.png'
+<!-- layout: intro-image-right
+image: '/goldorak.png' -->
 ---
 ## L'équipe Gold-ô-Rack
 
