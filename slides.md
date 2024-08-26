@@ -224,7 +224,7 @@ class: "bg-white text-black"
 <Pagination classNames="text-black"> </Pagination>
 
 ---
-layout: section
+layout: intro
 ---
 
 # Tâches Accomplies
@@ -254,13 +254,10 @@ puissent être contrôlées par le système défini à l’étape 2.
 
 4. Implémenter la gestion des primitives le cas échéant
 ---
-layout: image
-image: "/gantt-past.png"
-backgroundSize: contain
+layout: figure
+figureUrl: "/gantt1.png"
 ---
 
-![alt text](image.png)
-![alt text](image-1.png)
 <div class="absolute top-10">
   <h2 text-black>Tâches accomplies</h2>
 </div>
@@ -286,6 +283,7 @@ backgroundSize: contain
   Compétences liées :
   <ul>
     <li>CC1 : S'intégrer dans la structure d'accueil </li>
+    <li>CST1 : Analyser et comprendre un problème </li>
   </ul>
 </div>
 ---
@@ -337,7 +335,7 @@ backgroundSize: contain
 
   <div class="w-1/3">
       <div class="border border-green-500 bordertext-green-600 py-2 px-4 rounded text-sm">
-        <bold class="font-bold">Pros: </bold> </br>
+        <bold class="font-bold">Avantages: </bold> </br>
         <ul>
           <li>Bénéficie de l'écosystème Terraform</li>
           <li>Utilise un langage répandu (YAML)</li>
@@ -345,7 +343,7 @@ backgroundSize: contain
       </div> 
       <br/>
       <div class="border border-red-500 py-2 px-4 rounded text-sm">
-        <bold class="font-bold">Cons: </bold>
+        <bold class="font-bold">Inconvénients: </bold>
         </br>
         <ul>
           <li>La génération de provider Crossplane est complexe</li>
@@ -369,7 +367,7 @@ backgroundSize: contain
 
   <div class="w-1/3">
       <div class="border border-green-500 bordertext-green-600 py-2 px-4 rounded text-sm">
-        <bold class="font-bold">Pros: </bold> </br>
+        <bold class="font-bold">Avantages: </bold> </br>
         <ul>
           <li>Granularité fine</li>
           <li>Les opérateurs OpenStack pourraient être grandement utiles</li>
@@ -377,7 +375,7 @@ backgroundSize: contain
       </div> 
       <br/>
       <div class="border border-red-500 py-2 px-4 rounded text-sm">
-        <bold class="font-bold">Cons: </bold>
+        <bold class="font-bold">Inconvénients: </bold>
         </br>
         <ul>
           <li>La création d'un opérateur est une tâche très complexe</li>
@@ -400,7 +398,7 @@ backgroundSize: contain
 
   <div class="w-1/3">
       <div class="border border-green-500 bordertext-green-600 py-2 px-4 rounded text-sm">
-        <bold class="font-bold">Pros: </bold> </br>
+        <bold class="font-bold">Avantages: </bold> </br>
         <ul>
           <li>Très grand écosystème de provider</li>
           <li>HCL est un langage simple mais puissant</li>
@@ -408,7 +406,7 @@ backgroundSize: contain
       </div> 
       <br/>
       <div class="border border-red-500 py-2 px-4 rounded text-sm">
-        <bold class="font-bold">Cons: </bold>
+        <bold class="font-bold">Inconvénients: </bold>
         </br>
         <ul>
           <li>Peut être lent à la réconciliation</li>
@@ -504,8 +502,10 @@ resource "netbox_asn" "asns" {
 <div class="fixed bottom-10 left-0 right-0 mx-auto w-11/12 rounded-md border border-gray-600 p-2 text-sm">
   Compétences liées :
   <ul>
-    <li>CST3 : Mettre en oeuvre et formaliser une solution </li>
+    <li>CM1 : ’organiser et planifier le travai </li>
     <li>CM4 : Acquérir de nouvelles connaissance et savoirs-faire </li>
+    <li>CST3 : Mettre en oeuvre et formaliser une solution </li>
+    <li>CST4 : Trouver l’information pertinente et l’exploite </li>
   </ul>
 </div>
 
@@ -514,6 +514,91 @@ layout: section
 ---
 
 # Tâches à venir
+
+
+<!-- 
+
+Exemple neutron:
+
+BM_NET_NAME=physnet1
+ADMIN_NET_VLAN=200
+ADMIN_NET_NAME=adminnet
+ADMIN_SUBNET_NAME=admin_net
+ADMIN_NET_CIDR={{ admin_net_prefix }}
+ADMIN_NET_START_IP={{ admin_net_prefix | ansible.utils.nthhost(5) }}
+ADMIN_NET_END_IP={{ admin_net_prefix | ansible.utils.nthhost(-5) }}
+DISCOVERY_NET_VLAN=199
+DISCOVERY_NET_NAME=discovery
+EXTERNAL_NET_VLAN=201
+EXTERNAL_NET_NAME=extnet
+EXTERNAL_SUBNET_NAME=external_subnet
+
+echo >&2 Configuring neutron admin network
+if ! openstack network show -c id -f value "${ADMIN_NET_NAME}" > /dev/null; then
+    openstack network create --project admin "${ADMIN_NET_NAME}" \
+        --provider-segment "${ADMIN_NET_VLAN}" \
+        --disable-port-security \
+        --provider-network-type vlan --provider-physical-network "${BM_NET_NAME}"
+fi
+
+--------------------------------------------------------
+
+resource "openstack_networking_network_v2" "admin" {
+  tenant_id             = data.openstack_identity_project_v3.admin.id
+  name                  = var.admin_net_name
+  port_security_enabled = false
+
+  segments {
+    physical_network = var.bm_net_name
+    network_type     = "vlan"
+    segmentation_id  = var.admin_net_vlan
+  }
+}
+ -->
+
+
+ <!-- Exemple nova
+ 
+ # 40 instances
+openstack quota set --instances 40 ${ADMIN_PROJECT_ID}
+
+# 40 cores
+openstack quota set --cores 400 ${ADMIN_PROJECT_ID}
+
+# 96GB ram
+openstack quota set --ram 96000 ${ADMIN_PROJECT_ID}
+ 
+ 
+ resource "openstack_compute_quotaset_v2" "quotaset_1" {
+  for_each = {} # TODO: add support for var.quota_sets
+
+resource "openstack_compute_quotaset_v2" "quotaset_admin" {
+  project_id           = data.openstack_identity_project_v3.admin.id
+  cores                = each.value.cores
+  fixed_ips            = each.value.fixed_ips
+  floating_ips         = each.value.floating_ips
+  instances            = each.value.instances
+  key_pairs            = each.value.key_pairs
+  metadata_items       = each.value.metadata_items
+  ram                  = each.value.ram
+  security_group_rules = each.value.security_group_rules
+  security_groups      = each.value.security_groups
+  server_group_members = each.value.server_group_members
+  server_groups        = each.value.server_groups
+  cores                = var.quota_sets.cores
+  fixed_ips            = var.quota_sets.fixed_ips
+  floating_ips         = var.quota_sets.floating_ips
+  instances            = var.quota_sets.instances
+  key_pairs            = var.quota_sets.key_pairs
+  metadata_items       = var.quota_sets.metadata_items
+  ram                  = var.quota_sets.ram
+  security_group_rules = var.quota_sets.security_group_rules
+  security_groups      = var.quota_sets.security_groups
+  server_group_members = var.quota_sets.server_group_members
+  server_groups        = var.quota_sets.server_groups
+} 
+ 
+  -->
 
 ---
 layout: image
