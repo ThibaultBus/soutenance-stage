@@ -36,6 +36,10 @@ coverDate: ""
 </div>
 
 <div class="absolute bottom-10">
+  <span>
+    Tuteur entreprise : Yann Degat<br/>
+    Tuteur école : Rémi Lehn <br/>
+  </span>
   <span class="font-700">
     Thibault Bustarret, Mardi 2 Juillet 2024
   </span>
@@ -83,7 +87,7 @@ figureUrl: "/map-pop.webp"
 <br/>
 
 * Spécialisé dans le _cloud computing_, mais aussi FAI et opérateur
-* Premier fournisseur de cloud européen
+* Premier fournisseur de _cloud_ européen
 * 2900 salariés [^1]
 * 897 millions d'euros de chiffre d'affaires [^1]
 * 43 _datacenters_
@@ -127,7 +131,7 @@ layout: statement
   </div>
   <div class="flex flex-col items-center">
     <solar-user-bold-duotone class="text-4xl" />
-    <p> Vicent Casse </p>
+    <p> Vincent Casse </p>
   </div>
 </div>
 
@@ -161,7 +165,7 @@ layout: statement
   </div>
   <div class="flex flex-col items-center">
     <solar-user-bold-duotone class="text-4xl" />
-    <p> Bruno David </p>
+    <p> <i>Bruno David</i> </p>
   </div>
 </div>
 
@@ -182,7 +186,7 @@ layout: intro
   <p> Pas d'isolation de l'extérieur, éloignement géographique du client (latence, bande passante...) </p>
   <solar-arrow-down-bold class="text-4xl" />
   <b> Une solution : </b>
-  <p> Une pile technologique permettant permettant de construire un <i>cloud</i> isolé </p>
+  <p> Une pile technologique permettant de construire un <i>cloud</i> isolé (<i>pod</i>) </p>
   <solar-arrow-down-bold class="text-4xl" />
   <b> Deux produits : </b>
   <p> <i> Baremetal pod </i> et <i> Datacenter-as-a-Service </i> </p>
@@ -196,8 +200,21 @@ layout: intro
 layout: center
 ---
 
-<div class="flex">
-  <div class="h-110 w-96">
+<div class="flex flex-row">
+  <div class="flex-1 mr-2">
+    <h2> L'architecture logicielle </h2>
+    <br/>
+    <br/>
+    <br/>
+    <h3 class="mb-2"> <logos-kubernetes class="text-2xl" /> Kubernetes </h3>
+    <span>Système permettant d'automatiser le déploiement et la gestion d'applications conteneurisées.</span>
+    <br/>
+    <br/>
+    <br/>
+    <h3 class="mb-2"> <logos-openstack-icon class="text-2xl" /> OpenStack </h3>
+    <span>Ensemble de projets permettant de créer et gérer des services <i>cloud</i>.</span>
+  </div>
+  <div class="flex-1 ml-2">
     <img src="/gor-controller-arch.png" class="object-contain">
   </div>
 </div>
@@ -208,7 +225,11 @@ layout: center
   <div>
   <h2> Problème de post-installation </h2>
 
-  Plusieurs applications avec des configurations gérées sub-optimalement :
+  Plusieurs applications avec des configurations gérées sub-optimalement : <br/>
+  Leur configuration est créée à l'initialisation uniquement.
+
+  Exemple : créer un compte utilisateur.
+
   * Pas de configuration post-installation possible (ou trop simpliste)
   * Aucune assurance sur l'équivalence avec la configuration de la source de vérité
   <solar-arrow-right-bold /> <span>  </span> Gestion de la configuration suivant les principes du GitOps
@@ -227,7 +248,7 @@ class: "bg-white text-black"
 layout: intro
 ---
 
-# Tâches Accomplies
+# Tâches accomplies
 
 ---
 
@@ -246,8 +267,8 @@ layout: intro
 <br/>
 
 1. Définir l'étendue des éléments de configuration concernés
-   <span class="text-gray-500 italic text-sm"><br/>Il est inutile de prendre en charge des éléments inutiles.</span>
-2. Concevoir et mettre en œuvre un système de réconciliation continue des configurations par rapport à la source de vérité
+   <span class="text-gray-500 italic text-sm"><br/>Aucun intérêt à prendre en charge des éléments inutiles.</span>
+2. Concevoir et mettre en œuvre un système de réconciliation continue des configurations par rapport à la source de vérité.
   <span class="text-gray-500 italic text-sm"><br/>Cela implique d'avoir un système capable de lire les états des configurations déployées, de les comparer à la source de vérité et de les mettre à jour si besoin.</span>
 3. S’assurer que l’ensemble des primitives de configuration de chaque service, identifiées à l’étape 1,
 puissent être contrôlées par le système défini à l’étape 2.
@@ -258,9 +279,7 @@ layout: figure
 figureUrl: "/gantt1.png"
 ---
 
-<div class="absolute top-10">
-  <h2 text-black>Tâches accomplies</h2>
-</div>
+## Premiers pas
 
 ---
 
@@ -326,8 +345,8 @@ figureUrl: "/gantt1.png"
 <br/>
 <div>
   Crossplane est un plan de contrôle universel. <br/>
-  Il est possible de générer un provider Crossplane, <br/>
-  à partir d'un provider Terraform.
+  Il est possible de générer un <i>provider</i> Crossplane, <br/>
+  à partir d'un <i>provider</i> Terraform.
 
   <br/>
   <br/>
@@ -346,8 +365,8 @@ figureUrl: "/gantt1.png"
         <bold class="font-bold">Inconvénients: </bold>
         </br>
         <ul>
-          <li>La génération de provider Crossplane est complexe</li>
-          <li>Le YAML à écrire a des subtilités pouvant avoir de fortes conséquences</li>
+          <li>La génération de <i>provider</i> Crossplane est complexe</li>
+          <li>Le YAML nécessaire a des subtilités pouvant avoir de fortes conséquences</li>
         </ul>
       </div> 
   </div>
@@ -359,7 +378,7 @@ figureUrl: "/gantt1.png"
 <br/>
 <div>
   Écriture d'un opérateur Kubernetes pour chacune de nos apps.<br/>
-  Réutilisation d'opérateur existant lorsque cela est possible (notamment pour OpenStack).
+  Réutilisation d'opérateurs existant lorsque cela est possible (notamment pour OpenStack).
 
   <br/>
   <br/>
@@ -390,7 +409,7 @@ figureUrl: "/gantt1.png"
 ## <logos-terraform-icon class="text-2xl" /> Terraform & tofu-controller
 <br/>
 <div>
-  Terraform est un outil d'infrastructure-as-code (dont Tofu est le fork open-source). <br/>
+  Terraform est un outil d'infrastructure-as-code (dont Tofu est le <i>fork</i> libre). <br/>
   Le tofu-controller de Flux permet de jouer un plan Terraform en continu. <br/>
   <br/>
   <br/>
@@ -438,19 +457,25 @@ figureUrl: "/gantt1.png"
 </div>
 
 ---
+layout: figure
+figureUrl: "/gantt2.png"
+---
+
+## Implémentation
+
+---
 
 ## Netbox
+Netbox est un outil de gestion des infrastructures réseau. Il nous permet de faire l'inventaire des serveurs et équipements réseau des baies de serveurs. 
 
-Netbox est un outil de gestion des infrastructures réseau.
-
-Sa configuration est défini uniquement à la création à partir d'un fichier YAML.
+Sa configuration est définie uniquement à l'initialisation à partir d'un fichier YAML.
 
 <br/>
 
 <span class="font-bold">Mes tâches :</span>
 
 <ul>
-  <li> Contributions au provider Terraform
+  <li> Contributions au <i>provider</i> Terraform
   <br/>
   </li>
   <li> Test de performance Netbox & Terraform
@@ -460,7 +485,7 @@ Sa configuration est défini uniquement à la création à partir d'un fichier Y
   <span class="text-gray-500 italic text-sm"><br/>Celle-ci devait être capable de lire les données du fichier YAML déjà utilisé !</span>
   <br/>
   </li>
-  <li> Migration la configuration Netbox vers cette approche
+  <li> Migration de la configuration Netbox vers cette approche
   <br/>
   </li>
 </ul>
@@ -486,7 +511,7 @@ asns.yml: |
 ```js
 resource "netbox_asn" "asns" {
   asn      = 65100
-  rir_id   = netbox_rir.rirs["Goldorack"].id
+  rir_id   = netbox_rir.rirs[Goldorack].id
 }
 ```
 
@@ -502,7 +527,7 @@ resource "netbox_asn" "asns" {
 <div class="fixed bottom-10 left-0 right-0 mx-auto w-11/12 rounded-md border border-gray-600 p-2 text-sm">
   Compétences liées :
   <ul>
-    <li>CM1 : ’organiser et planifier le travai </li>
+    <li>CM1 : S’organiser et planifier le travail </li>
     <li>CM4 : Acquérir de nouvelles connaissance et savoirs-faire </li>
     <li>CST3 : Mettre en oeuvre et formaliser une solution </li>
     <li>CST4 : Trouver l’information pertinente et l’exploite </li>
@@ -513,36 +538,59 @@ resource "netbox_asn" "asns" {
 layout: section
 ---
 
-# Tâches à venir
+## <logos-openstack-icon class="text-2xl" /> OpenStack 
+<br/>
+
+Un ensemble de services nous permettant d'établir une orchestration _cloud_. 
+
+La configuration de ces services se fait par un script Bash, lancé à l'initialisation.
+
+<br/>
+
+**Services impliqués :**
+
+- Keystone : gestion des utilisateurs, des rôles, des projets et du catalogue de services
+- Nova : configuration des instances de calcul
+- Placement : allocation des ressources de calcul
+- Ironic : gestion du provisionnement de machines physiques
+- Neutron : configuration du réseau
+
+---
+
+## Objectif final
 
 
-<!-- 
+Example d'une conversion Bash vers Terraform :
+````md magic-move
 
-Exemple neutron:
-
+```js
 BM_NET_NAME=physnet1
 ADMIN_NET_VLAN=200
 ADMIN_NET_NAME=adminnet
-ADMIN_SUBNET_NAME=admin_net
-ADMIN_NET_CIDR={{ admin_net_prefix }}
-ADMIN_NET_START_IP={{ admin_net_prefix | ansible.utils.nthhost(5) }}
-ADMIN_NET_END_IP={{ admin_net_prefix | ansible.utils.nthhost(-5) }}
-DISCOVERY_NET_VLAN=199
-DISCOVERY_NET_NAME=discovery
-EXTERNAL_NET_VLAN=201
-EXTERNAL_NET_NAME=extnet
-EXTERNAL_SUBNET_NAME=external_subnet
 
-echo >&2 Configuring neutron admin network
 if ! openstack network show -c id -f value "${ADMIN_NET_NAME}" > /dev/null; then
     openstack network create --project admin "${ADMIN_NET_NAME}" \
         --provider-segment "${ADMIN_NET_VLAN}" \
         --disable-port-security \
         --provider-network-type vlan --provider-physical-network "${BM_NET_NAME}"
 fi
+```
 
---------------------------------------------------------
+```js
+resource "openstack_networking_network_v2" "admin" {
+  tenant_id             = data.openstack_identity_project_v3.admin.id
+  name                  = adminnet
+  port_security_enabled = false
 
+  segments {
+    physical_network = physnet1
+    network_type     = "vlan"
+    segmentation_id  = 200
+  }
+}
+```
+
+```js
 resource "openstack_networking_network_v2" "admin" {
   tenant_id             = data.openstack_identity_project_v3.admin.id
   name                  = var.admin_net_name
@@ -554,70 +602,27 @@ resource "openstack_networking_network_v2" "admin" {
     segmentation_id  = var.admin_net_vlan
   }
 }
- -->
+```
+````
 
-
- <!-- Exemple nova
- 
- # 40 instances
-openstack quota set --instances 40 ${ADMIN_PROJECT_ID}
-
-# 40 cores
-openstack quota set --cores 400 ${ADMIN_PROJECT_ID}
-
-# 96GB ram
-openstack quota set --ram 96000 ${ADMIN_PROJECT_ID}
- 
- 
- resource "openstack_compute_quotaset_v2" "quotaset_1" {
-  for_each = {} # TODO: add support for var.quota_sets
-
-resource "openstack_compute_quotaset_v2" "quotaset_admin" {
-  project_id           = data.openstack_identity_project_v3.admin.id
-  cores                = each.value.cores
-  fixed_ips            = each.value.fixed_ips
-  floating_ips         = each.value.floating_ips
-  instances            = each.value.instances
-  key_pairs            = each.value.key_pairs
-  metadata_items       = each.value.metadata_items
-  ram                  = each.value.ram
-  security_group_rules = each.value.security_group_rules
-  security_groups      = each.value.security_groups
-  server_group_members = each.value.server_group_members
-  server_groups        = each.value.server_groups
-  cores                = var.quota_sets.cores
-  fixed_ips            = var.quota_sets.fixed_ips
-  floating_ips         = var.quota_sets.floating_ips
-  instances            = var.quota_sets.instances
-  key_pairs            = var.quota_sets.key_pairs
-  metadata_items       = var.quota_sets.metadata_items
-  ram                  = var.quota_sets.ram
-  security_group_rules = var.quota_sets.security_group_rules
-  security_groups      = var.quota_sets.security_groups
-  server_group_members = var.quota_sets.server_group_members
-  server_groups        = var.quota_sets.server_groups
-} 
- 
-  -->
-
----
-layout: image
-image: "/gantt-future.png"
-backgroundSize: contain
----
-
-<div class="absolute top-10">
-  <h2 text-black>Tâches à venir</h2>
+<div class="fixed bottom-10 left-0 right-0 mx-auto w-11/12 rounded-md border border-gray-600 p-2 text-sm">
+  Compétences liées :
+  <ul>
+    <li>CM1 : S’organiser et planifier le travail </li>
+    <li>CM4 : Acquérir de nouvelles connaissance et savoirs-faire </li>
+    <li>CST3 : Mettre en oeuvre et formaliser une solution </li>
+    <li>CST4 : Trouver l’information pertinente et l’exploite </li>
+  </ul>
 </div>
 
 ---
-layout: statement
+layout: intro
 ---
 
 # Conclusion
 
 ---
-layout: statement
+layout: end
 hideInToc: true
 ---
 
